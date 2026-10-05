@@ -380,6 +380,8 @@ public class Config implements Cloneable {
         public Boolean barrageDeflectsArrows;
         @BooleanOption(group = "inherit", value = false)
         public Boolean standPunchesGoThroughDoorsAndCorners;
+        @BooleanOption(group = "inherit", value = true)
+        public Boolean standGrabRequiresTool;
         @IntOption(group = "inherit", value = 3, min = 0, max = 72000)
         public Integer standGuardDelayTicks;
         @IntOption(group = "inherit", value = 100, min = 1, max = 72000)
@@ -530,7 +532,7 @@ public class Config implements Cloneable {
         public Float bitesTheDustDayMobsDamage;
         @FloatOption(group = "inherit", value = 24.5F, min = 0, max = 200F)
         public Float bitesTheDustDayPlayersDamage;
-        @IntOption(group = "inherit", value = 14, min = 0, max = 72000)
+        @IntOption(group = "inherit", value = 20, min = 0, max = 72000)
         public Integer bitesTheDustCombatMinimunForFullBlow;
         @FloatOption(group = "inherit", value = 75, min = 0, max = 72000)
         public Float bitesTheDustRewindRange;
@@ -1065,6 +1067,10 @@ public class Config implements Cloneable {
         public Integer walkingHeartMaxHits;
         @BooleanOption(group = "inherit", value = false)
         public Boolean fallProtectionOnRelease;
+        @IntOption(group = "inherit", value = 60, min = 0, max = 72000)
+        public Integer spikeDiveAttackCooldown;
+        @IntOption(group = "inherit", value = 200, min = 0, max = 72000)
+        public Integer spikePullCooldown;
     }
 
     public static class RattSettings {
@@ -1269,9 +1275,9 @@ public class Config implements Cloneable {
         public Integer getMiningTierTheWorld;
         @IntOption(group = "inherit", value = 300, min = 0, max = 72000)
         public Integer oxygenTankAdditionalTicks;
-        @IntOption(group = "inherit", value = 50, min = 0, max = 72000)
-        public Integer assaultCooldown;
-        @IntOption(group = "inherit", value = 60, min = 0, max = 72000)
+        @IntOption(group = "inherit", value = 70, min = 0, max = 72000)
+        public Integer assaultCooldownv2;
+        @IntOption(group = "inherit", value = 70, min = 0, max = 72000)
         public Integer assaultInterruptCooldown;
     }
 
