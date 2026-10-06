@@ -172,24 +172,15 @@ public class TommyGunItem extends FirearmItem implements Vanishable {
         if (!(itemStack.getItem() instanceof TommyGunItem)) {
             return InteractionResultHolder.fail(itemStack);
         }
-            if ((isCrouchingOrSomething(player,itemStack) && hasTommyAmmo(player) && getAmmo(itemStack) != maxAmmo) || (isCrouchingOrSomething(player,itemStack) && player.isCreative())) {
-                if (!isReloading(itemStack)) {
-                    setReloading(itemStack, true);
+        if ((isCrouchingOrSomething(player, itemStack) && hasTommyAmmo(player) && getAmmo(itemStack) != maxAmmo) || (isCrouchingOrSomething(player, itemStack) && player.isCreative())) {
+            if (!isReloading(itemStack)) {
+                setReloading(itemStack, true);
+                    player.getCooldowns().addCooldown(this, 70);
+                    player.stopUsingItem();
+                    ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.TOMMY_RELOAD, 10, false);
 
-                    if (!isReloading(itemStack)) {
-                        setReloading(itemStack, true);
-                        StandUser user = ((StandUser) player);
-                        if (user.roundabout$getStandPowers() instanceof PowersSexPistols) {
-                            player.getCooldowns().addCooldown(this, 35);
-                            player.stopUsingItem();
-                            ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.TOMMY_RELOAD, 10, false);
-                        } else {
-                            player.getCooldowns().addCooldown(this, 70);
-                            player.stopUsingItem();
-                            ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.TOMMY_RELOAD, 10, false);
-                        }
-                    }
-                }
+            }
+
 
                 return InteractionResultHolder.consume(itemStack);
             } else {

@@ -175,16 +175,9 @@ public class JackalRifleItem extends FirearmItem implements Vanishable {
 
                     if (!isReloading(itemStack)) {
                         setReloading(itemStack, true);
-                        StandUser user = ((StandUser) player);
-                        if (user.roundabout$getStandPowers() instanceof PowersSexPistols) {
-                            player.getCooldowns().addCooldown(this, 10);
-                            player.stopUsingItem();
-                            ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.SNIPER_RELOAD, 10, false);
-                        } else {
                             player.getCooldowns().addCooldown(this, 20);
                             player.stopUsingItem();
                             ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.SNIPER_RELOAD, 10, false);
-                        }
                     }
                 }
 
