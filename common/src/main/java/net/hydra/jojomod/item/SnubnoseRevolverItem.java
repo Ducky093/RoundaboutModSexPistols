@@ -1,10 +1,14 @@
 package net.hydra.jojomod.item;
 import net.hydra.jojomod.Roundabout;
+import net.hydra.jojomod.access.IPowersPlayer;
 import net.hydra.jojomod.entity.projectile.RoundaboutBulletEntity;
 import net.hydra.jojomod.event.ModParticles;
 import net.hydra.jojomod.event.index.SoundIndex;
 import net.hydra.jojomod.event.powers.StandUser;
+import net.hydra.jojomod.powers.power_types.PunchingGeneralPowers;
 import net.hydra.jojomod.sound.ModSounds;
+import net.hydra.jojomod.stand.powers.PowersSexPistols;
+import net.hydra.jojomod.stand.powers.PowersWhiteAlbum;
 import net.hydra.jojomod.stand.powers.PowersWhitesnake;
 import net.hydra.jojomod.event.powers.whitesnake.WhitesnakeControlInventory;
 import net.minecraft.ChatFormatting;
@@ -26,6 +30,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.hydra.jojomod.event.powers.StandUser;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -182,9 +187,17 @@ public class SnubnoseRevolverItem extends FirearmItem implements Vanishable {
             if ((isCrouchingOrSomething(player,itemStack) && hasSnubnoseAmmo(player) && getAmmo(itemStack) != maxAmmo) || (isCrouchingOrSomething(player,itemStack) && player.isCreative())) {
                 if (!isReloading(itemStack)) {
                     setReloading(itemStack, true);
-                    player.getCooldowns().addCooldown(this, 60);
-                    player.stopUsingItem();
-                    ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.REVOLVER_RELOAD, 10, false);
+                    StandUser user = ((StandUser) player);
+                    if (user.roundabout$getStandPowers() instanceof PowersSexPistols) {
+                        player.getCooldowns().addCooldown(this, 20);
+                        player.stopUsingItem();
+                        ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.REVOLVER_RELOAD, 10, false);
+                    }
+                    else {
+                        player.getCooldowns().addCooldown(this, 60);
+                        player.stopUsingItem();
+                        ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.REVOLVER_RELOAD, 10, false);
+                    }
                 }
 
                 return InteractionResultHolder.consume(itemStack);

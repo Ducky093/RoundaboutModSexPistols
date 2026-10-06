@@ -5,6 +5,7 @@ import net.hydra.jojomod.event.ModParticles;
 import net.hydra.jojomod.event.index.SoundIndex;
 import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.sound.ModSounds;
+import net.hydra.jojomod.stand.powers.PowersSexPistols;
 import net.hydra.jojomod.stand.powers.PowersWhitesnake;
 import net.hydra.jojomod.event.powers.whitesnake.WhitesnakeControlInventory;
 import net.minecraft.ChatFormatting;
@@ -185,9 +186,20 @@ public class ColtRevolverItem extends FirearmItem implements Vanishable {
             if ((isCrouchingOrSomething(player,itemStack) && hasColtAmmo(player) && getAmmo(itemStack) != maxAmmo) || (isCrouchingOrSomething(player,itemStack) && player.isCreative())) {
                 if (!isReloading(itemStack)) {
                     setReloading(itemStack, true);
-                    player.stopUsingItem();
-                    player.getCooldowns().addCooldown(this, 60);
-                    ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.COLT_RELOAD, 10, false);
+
+                    if (!isReloading(itemStack)) {
+                        setReloading(itemStack, true);
+                        StandUser user = ((StandUser) player);
+                        if (user.roundabout$getStandPowers() instanceof PowersSexPistols) {
+                            player.getCooldowns().addCooldown(this, 20);
+                            player.stopUsingItem();
+                            ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.COLT_RELOAD, 10, false);
+                        } else {
+                            player.getCooldowns().addCooldown(this, 60);
+                            player.stopUsingItem();
+                            ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.COLT_RELOAD, 10, false);
+                        }
+                    }
                 }
 
                 return InteractionResultHolder.consume(itemStack);

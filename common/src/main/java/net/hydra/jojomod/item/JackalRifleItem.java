@@ -6,6 +6,7 @@ import net.hydra.jojomod.event.ModParticles;
 import net.hydra.jojomod.event.index.SoundIndex;
 import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.sound.ModSounds;
+import net.hydra.jojomod.stand.powers.PowersSexPistols;
 import net.hydra.jojomod.util.S2CPacketUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
@@ -171,9 +172,20 @@ public class JackalRifleItem extends FirearmItem implements Vanishable {
             if ((isCrouchingOrSomething(player,itemStack) && hasSniperAmmo(player) && getAmmo(itemStack) != maxAmmo) || (isCrouchingOrSomething(player,itemStack) && player.isCreative())) {
                 if (!isReloading(itemStack)) {
                     setReloading(itemStack, true);
-                    player.getCooldowns().addCooldown(this, 20);
-                    player.stopUsingItem();
-                    ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.SNIPER_RELOAD, 10, false);
+
+                    if (!isReloading(itemStack)) {
+                        setReloading(itemStack, true);
+                        StandUser user = ((StandUser) player);
+                        if (user.roundabout$getStandPowers() instanceof PowersSexPistols) {
+                            player.getCooldowns().addCooldown(this, 10);
+                            player.stopUsingItem();
+                            ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.SNIPER_RELOAD, 10, false);
+                        } else {
+                            player.getCooldowns().addCooldown(this, 20);
+                            player.stopUsingItem();
+                            ((StandUser) player).roundabout$getStandPowers().playSoundsIfNearby(SoundIndex.SNIPER_RELOAD, 10, false);
+                        }
+                    }
                 }
 
                 return InteractionResultHolder.consume(itemStack);
