@@ -941,6 +941,10 @@ public class StandIcons {
     public static final ResourceLocation TUSK_GRASP = Roundabout.location("textures/gui/icons/tusk/grasp.png");
     public static final ResourceLocation TUSK_WORMHOLE = Roundabout.location("textures/gui/icons/tusk/wormhole.png");
 
+    public static final ResourceLocation SEX_PISTOLS_ITEM_SEND = Roundabout.location("textures/gui/icons/sex_pistols/sex_pistols_item_float");
+    public static final ResourceLocation SEX_PISTOLS_ITEM_KICK = Roundabout.location("textures/gui/icons/sex_pistols/sex_pistols_item_kick");
+    public static final ResourceLocation SEX_PISTOLS_TARGET = Roundabout.location("textures/gui/icons/sex_pistols/sex_pistols_target");
+    public static final ResourceLocation SEX_PISTOLS_BULLET_RIDE = Roundabout.location("textures/gui/icons/sex_pistols/sex_pistols_bullet_ride");
 
     public static final ResourceLocation SOFT_AND_WET_BARRAGE = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/soft_and_wet/barrage.png");

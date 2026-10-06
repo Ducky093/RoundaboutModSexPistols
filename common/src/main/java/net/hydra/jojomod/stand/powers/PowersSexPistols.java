@@ -1,14 +1,22 @@
 package net.hydra.jojomod.stand.powers;
 
+import net.hydra.jojomod.access.IPlayerEntity;
+import net.hydra.jojomod.client.ClientNetworking;
+import net.hydra.jojomod.client.StandIcons;
+import net.hydra.jojomod.entity.stand.StandEntity;
+import net.hydra.jojomod.event.index.PacketDataIndex;
 import net.hydra.jojomod.event.index.PowerIndex;
 import net.hydra.jojomod.event.powers.StandPowers;
 import net.hydra.jojomod.stand.powers.elements.PowerContext;
 import net.hydra.jojomod.stand.powers.presets.NewDashPreset;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 
-import static net.hydra.jojomod.event.index.PowerIndex.POWER_4_SNEAK;
+import static net.hydra.jojomod.event.index.PowerIndex.*;
 
 public class PowersSexPistols extends NewDashPreset {
     public PowersSexPistols(LivingEntity self) {
@@ -45,7 +53,7 @@ public class PowersSexPistols extends NewDashPreset {
          //       itemKickClient();
             }
             case SKILL_2_NORMAL-> {
-         //       targetSelectClient();
+                targetSelect();
             }
             case SKILL_2_CROUCH-> {
           //      sexPistolItemGrabClient();
@@ -65,8 +73,12 @@ public class PowersSexPistols extends NewDashPreset {
            }
         }
 
+    private void targetSelect() {
 
-   @Override
+    }
+
+
+    @Override
     public boolean setPowerOther(int move, int lastMove) {
         switch (move) {
           /*  case PowerIndex.POWER_1 -> {
@@ -74,10 +86,8 @@ public class PowersSexPistols extends NewDashPreset {
             }
             case PowerIndex.POWER_1_CROUCH -> {
                 return itemKick();
-            }
-            case PowerIndex.POWER_2 -> {
-                return targetSelect();
-            }
+            }*/
+            /*
             case PowerIndex.POWER_3_CROUCH -> {
                 return projectileBlocking();
             }
@@ -85,7 +95,7 @@ public class PowersSexPistols extends NewDashPreset {
                 return feedSexPistols();
             }  */
             case POWER_4_SNEAK -> {
-         //       return recon();
+             //  return recon();
             }
         }
         return super.setPowerOther(move,lastMove);  
@@ -118,9 +128,24 @@ public class PowersSexPistols extends NewDashPreset {
             this.setCooldown(PowerIndex.SKILL_4, 20);
         }
     }*/
+
+
 @Override
     public boolean isSecondaryStand(){
         return true;
     }
-
+    public void renderIcons(GuiGraphics context, int x, int y) {
+        // code for advanced icons
+        if (isHoldingSneak())
+            setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_KICK, PowerIndex.SKILL_1);
+        else
+            setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_SEND, PowerIndex.SKILL_1);
+            setSkillIcon(context, x, y, 2, StandIcons.SEX_PISTOLS_TARGET, PowerIndex.SKILL_2);
+            setSkillIcon(context, x, y, 3, StandIcons.DODGE, PowerIndex.GLOBAL_DASH);
+       /* if (isHoldingSneak())
+            setSkillIcon(context, x, y, 4, StandIcons.RECON, PowerIndex.SKILL_4);
+        else
+            setSkillIcon(context, x, y, 4, StandIcons.FEED_SEX_PISTOLS, PowerIndex.SKILL_4); */
+        super.renderIcons(context, x, y);
+    }
 }
