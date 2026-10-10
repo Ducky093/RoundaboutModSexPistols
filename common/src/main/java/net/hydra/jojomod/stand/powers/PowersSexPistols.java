@@ -1,13 +1,11 @@
 package net.hydra.jojomod.stand.powers;
 
+import net.hydra.jojomod.access.IPlayerEntity;
 import net.hydra.jojomod.client.ClientUtil;
 import net.hydra.jojomod.client.StandIcons;
 import net.hydra.jojomod.event.index.PowerIndex;
 import net.hydra.jojomod.event.powers.StandPowers;
-import net.hydra.jojomod.item.ColtRevolverItem;
-import net.hydra.jojomod.item.JackalRifleItem;
-import net.hydra.jojomod.item.SnubnoseRevolverItem;
-import net.hydra.jojomod.item.TommyGunItem;
+import net.hydra.jojomod.item.*;
 import net.hydra.jojomod.sound.ModSounds;
 import net.hydra.jojomod.stand.powers.elements.PowerContext;
 import net.hydra.jojomod.stand.powers.presets.NewDashPreset;
@@ -18,6 +16,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import static net.hydra.jojomod.event.index.PowerIndex.*;
 
@@ -46,26 +46,15 @@ public class PowersSexPistols extends NewDashPreset {
    // public StandEntity getNewStandEntity() {
     //    return ModEntities.SEXPISTOL.create(this.getSelf().level());
    // }
-    public boolean isHoldingGun(Player player){
-        if ((player.getMainArm() == HumanoidArm.LEFT && player.getMainHandItem().getItem() instanceof SnubnoseRevolverItem) || (player.getMainArm() == HumanoidArm.RIGHT && player.getOffhandItem().getItem() instanceof SnubnoseRevolverItem)) {
-            return true ;
-            }
-        else if ((player.getMainArm() == HumanoidArm.LEFT && player.getMainHandItem().getItem() instanceof TommyGunItem) || (player.getMainArm() == HumanoidArm.RIGHT && player.getOffhandItem().getItem() instanceof TommyGunItem)){
-            return true ;
-        }
-        else if ((player.getMainArm() == HumanoidArm.LEFT && player.getMainHandItem().getItem() instanceof JackalRifleItem) || (player.getMainArm() == HumanoidArm.RIGHT && player.getOffhandItem().getItem() instanceof JackalRifleItem)){
-            return true ;
-        }
-        else if ((player.getMainArm() == HumanoidArm.LEFT && player.getMainHandItem().getItem() instanceof ColtRevolverItem) || (player.getMainArm() == HumanoidArm.RIGHT && player.getOffhandItem().getItem() instanceof ColtRevolverItem)){
-            return true ;
-        }
-        else
-        return false ;
+    public boolean isHoldingGun(ItemStack itemStack){
+        if (itemStack.is(ModItems.JACKAL_RIFLE)
+                    || itemStack.is(ModItems.TOMMY_GUN)
+                    || itemStack.is(ModItems.SNUBNOSE_REVOLVER)
+                    || itemStack.is(ModItems.COLT_REVOLVER));{return true;}
+
     }
 
-    private boolean isHoldingGun() {
-        return isHoldingGun();
-    }
+
 
 
     @Override
@@ -73,10 +62,11 @@ public class PowersSexPistols extends NewDashPreset {
         switch (context)
         {
             case SKILL_1_NORMAL -> {
-                if (isHoldingGun() == true){
+                if (this.getSelf() instanceof Player P) {
+                    IPlayerEntity IPE = (IPlayerEntity) P;
+                    if ((isHoldingGun(IPE.roundabout$getForRealMainHand())))
                     allSexpistolsonebulletClient();
-                }
-                else
+              }
                itemSendClient();
             }
             case SKILL_1_CROUCH -> {
@@ -103,16 +93,12 @@ public class PowersSexPistols extends NewDashPreset {
            }
         }
 
+
     private void targetSelect() {
 
     }
     private void projectileBlockingToggle(){
-        if (!isProjectileBlockingActive) {
-            isProjectileBlockingActive = true;
-        }
-        else {
-            isProjectileBlockingActive = false;
-        }
+        isProjectileBlockingActive = !isProjectileBlockingActive;
     }
 
     @Override
@@ -175,9 +161,11 @@ public class PowersSexPistols extends NewDashPreset {
     }
     public void renderIcons(GuiGraphics context, int x, int y) {
         // code for advanced icons
-        if (isHoldingGun())
-            setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_BULLET_RIDE, PowerIndex.SKILL_1);
-        else if (isHoldingSneak())
+        if (this.getSelf() instanceof Player P) {
+            IPlayerEntity IPE = (IPlayerEntity) P;
+      if ( (isHoldingGun(IPE.roundabout$getForRealMainHand())))
+         setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_BULLET_RIDE, PowerIndex.SKILL_1);
+         if (isHoldingSneak())
             setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_KICK, PowerIndex.SKILL_1);
         else
             setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_SEND, PowerIndex.SKILL_1);
@@ -189,4 +177,5 @@ public class PowersSexPistols extends NewDashPreset {
             setSkillIcon(context, x, y, 4, StandIcons.FEED_SEX_PISTOLS, PowerIndex.SKILL_4); */
         super.renderIcons(context, x, y);
     }
+}
 }
