@@ -1,5 +1,6 @@
 package net.hydra.jojomod.stand.powers;
 
+import net.hydra.jojomod.client.ClientUtil;
 import net.hydra.jojomod.client.StandIcons;
 import net.hydra.jojomod.event.index.PowerIndex;
 import net.hydra.jojomod.event.powers.StandPowers;
@@ -7,11 +8,13 @@ import net.hydra.jojomod.item.ColtRevolverItem;
 import net.hydra.jojomod.item.JackalRifleItem;
 import net.hydra.jojomod.item.SnubnoseRevolverItem;
 import net.hydra.jojomod.item.TommyGunItem;
+import net.hydra.jojomod.sound.ModSounds;
 import net.hydra.jojomod.stand.powers.elements.PowerContext;
 import net.hydra.jojomod.stand.powers.presets.NewDashPreset;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +22,8 @@ import net.minecraft.world.entity.player.Player;
 import static net.hydra.jojomod.event.index.PowerIndex.*;
 
 public class PowersSexPistols extends NewDashPreset {
+
+    public boolean isProjectileBlockingActive = false;
     public PowersSexPistols(LivingEntity self) {
         super(self);
     }
@@ -87,7 +92,7 @@ public class PowersSexPistols extends NewDashPreset {
                 dash();
             }
             case SKILL_3_CROUCH -> {
-         //       projectileBlockingClient();
+                projectileBlockingToggle();
             }
             case SKILL_4_NORMAL -> {
          //   feedSexPistolsClient();
@@ -101,7 +106,14 @@ public class PowersSexPistols extends NewDashPreset {
     private void targetSelect() {
 
     }
-
+    private void projectileBlockingToggle(){
+        if (!isProjectileBlockingActive) {
+            isProjectileBlockingActive = true;
+        }
+        else {
+            isProjectileBlockingActive = false;
+        }
+    }
 
     @Override
     public boolean setPowerOther(int move, int lastMove) {
@@ -111,10 +123,6 @@ public class PowersSexPistols extends NewDashPreset {
             }
             case PowerIndex.POWER_1_CROUCH -> {
                 return itemKick();
-            }*/
-            /*
-            case PowerIndex.POWER_3_CROUCH -> {
-                return projectileBlocking();
             }
             case PowerIndex.POWER_4 -> {
                 return feedSexPistols();
@@ -123,7 +131,7 @@ public class PowersSexPistols extends NewDashPreset {
              //  return recon();
             }
         }
-        return super.setPowerOther(move,lastMove);  
+        return super.setPowerOther(move,lastMove);
  }
    public void reconClient() {
         if (!onCooldown(PowerIndex.SKILL_4_SNEAK)) {
