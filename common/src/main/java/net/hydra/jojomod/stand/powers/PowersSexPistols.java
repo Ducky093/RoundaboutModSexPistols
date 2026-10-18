@@ -1,5 +1,6 @@
 package net.hydra.jojomod.stand.powers;
 
+import net.hydra.jojomod.Roundabout;
 import net.hydra.jojomod.access.IPlayerEntity;
 import net.hydra.jojomod.client.ClientUtil;
 import net.hydra.jojomod.client.StandIcons;
@@ -16,12 +17,16 @@ import net.hydra.jojomod.stand.powers.presets.NewDashPreset;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static net.hydra.jojomod.event.index.PowerIndex.*;
 
@@ -34,11 +39,35 @@ public class PowersSexPistols extends NewDashPreset {
     public StandPowers generateStandPowers(LivingEntity entity) {
         return new PowersSexPistols(entity);
     }
-
+    public static final byte
+            ANIME = 1,
+            MANGA = 2;
     @Override
-    public StandEntity getNewStandEntity(){
-        return ModEntities.SEX_PISTOLS.create(this.getSelf().level());
+    public List<Byte> getSkinList() {
+        return Arrays.asList(
+                MANGA,
+                ANIME
+        );
     }
+    private static ResourceLocation[] ANIME_SKIN = new ResourceLocation[4];
+    private static ResourceLocation[] MANGA_SKIN = new ResourceLocation[4];
+    private static final String location = "textures/stand/tusk/act_";
+    public static void buildSkins() {
+        for(int i=0;i<4;i++) {
+            ANIME_SKIN[i] = new ResourceLocation(Roundabout.MOD_ID,location+(i+1)+ "/manga.png");
+            MANGA_SKIN[i] = new ResourceLocation(Roundabout.MOD_ID,location+(i+1)+ "/manga.png");
+        }
+    }
+    public static ResourceLocation getSkin(byte skin, int act) {
+        if (ANIME_SKIN[0] == null) {buildSkins();}
+        ResourceLocation[] skins = switch (skin) {
+            case ANIME -> ANIME_SKIN;
+            case MANGA -> MANGA_SKIN;
+            default -> MANGA_SKIN;
+        };
+        return skins[1];
+    }
+
     @Override
     public boolean isWip(){return true;}
     public Component ifWipListDevStatus(){
@@ -60,9 +89,9 @@ public class PowersSexPistols extends NewDashPreset {
 
     }
 
-
-
-
+    public boolean canSummonStandAsEntity(){
+        return false;
+    }
     @Override
     public void powerActivate(PowerContext context) {
         switch (context)
