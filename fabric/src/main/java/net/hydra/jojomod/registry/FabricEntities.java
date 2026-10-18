@@ -683,6 +683,13 @@ public class FabricEntities {
                     EntityType.Builder.of(TuskEntity::new, MobCategory.MISC).
                             sized(1.3F, 2F).clientTrackingRange(14).build(Roundabout.MOD_ID+":tusk_a4")
             );
+    public static final EntityType<SexPistolsEntity> SEX_PISTOLS =
+            Registry.register(
+                    BuiltInRegistries.ENTITY_TYPE,
+                    new ResourceLocation(Roundabout.MOD_ID, "sex_pistols"),
+                    EntityType.Builder.of(SexPistolsEntity::new, MobCategory.MISC).
+                            sized(0.5F, 0.5F).clientTrackingRange(14).build(Roundabout.MOD_ID+":sex_pistols")
+            );
     public static final EntityType<AnubisEntity> ANUBIS =
             Registry.register(
                     BuiltInRegistries.ENTITY_TYPE,
@@ -1302,6 +1309,7 @@ public class FabricEntities {
                 ModEntities.TUSK_A2 = TUSK_A2;
                 ModEntities.TUSK_A3 = TUSK_A3;
                 ModEntities.TUSK_A4 = TUSK_A4;
+        ModEntities.SEX_PISTOLS = SEX_PISTOLS;
                 ModEntities.ANUBIS = ANUBIS;
                 ModEntities.DIVER_DOWN = DIVER_DOWN;
                 ModEntities.DIVER_DOWN_BETA = DIVER_DOWN_BETA;
@@ -1505,6 +1513,7 @@ public class FabricEntities {
                 FabricDefaultAttributeRegistry.register(TUSK_A2, StandEntity.createStandAttributes());
                 FabricDefaultAttributeRegistry.register(TUSK_A3, StandEntity.createStandAttributes());
                 FabricDefaultAttributeRegistry.register(TUSK_A4, StandEntity.createStandAttributes());
+                FabricDefaultAttributeRegistry.register(SEX_PISTOLS, StandEntity.createStandAttributes());
                 FabricDefaultAttributeRegistry.register(ANUBIS, StandEntity.createStandAttributes());
                 FabricDefaultAttributeRegistry.register(CINDERELLA, CinderellaEntity.createStandAttributes());
                 FabricDefaultAttributeRegistry.register(CALIFORNIA_KING_BED, CaliforniaKingBedEntity.createStandAttributes());

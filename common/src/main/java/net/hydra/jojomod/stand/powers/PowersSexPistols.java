@@ -3,8 +3,12 @@ package net.hydra.jojomod.stand.powers;
 import net.hydra.jojomod.access.IPlayerEntity;
 import net.hydra.jojomod.client.ClientUtil;
 import net.hydra.jojomod.client.StandIcons;
+import net.hydra.jojomod.entity.ModEntities;
+import net.hydra.jojomod.entity.stand.MagiciansRedEntity;
+import net.hydra.jojomod.entity.stand.StandEntity;
 import net.hydra.jojomod.event.index.PowerIndex;
 import net.hydra.jojomod.event.powers.StandPowers;
+import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.item.*;
 import net.hydra.jojomod.sound.ModSounds;
 import net.hydra.jojomod.stand.powers.elements.PowerContext;
@@ -22,8 +26,6 @@ import net.minecraft.world.item.Items;
 import static net.hydra.jojomod.event.index.PowerIndex.*;
 
 public class PowersSexPistols extends NewDashPreset {
-
-    public boolean isProjectileBlockingActive = false;
     public PowersSexPistols(LivingEntity self) {
         super(self);
     }
@@ -34,13 +36,17 @@ public class PowersSexPistols extends NewDashPreset {
     }
 
     @Override
+    public StandEntity getNewStandEntity(){
+        return ModEntities.SEX_PISTOLS.create(this.getSelf().level());
+    }
+    @Override
     public boolean isWip(){return true;}
     public Component ifWipListDevStatus(){
-        return Component.translatable(  "roundabout.dev_status.active").withStyle(ChatFormatting.WHITE);
+        return Component.translatable(  "roundabout.dev_status.active").withStyle(ChatFormatting.ITALIC);
     }
     @Override
     public Component ifWipListDev(){
-        return Component.literal(  "a duck").withStyle(ChatFormatting.WHITE);
+        return Component.literal(  "A-Duck").withStyle(ChatFormatting.WHITE);
     }
  //   @Override
    // public StandEntity getNewStandEntity() {
@@ -64,10 +70,12 @@ public class PowersSexPistols extends NewDashPreset {
             case SKILL_1_NORMAL -> {
                 if (this.getSelf() instanceof Player P) {
                     IPlayerEntity IPE = (IPlayerEntity) P;
-                    if ((isHoldingGun(IPE.roundabout$getForRealMainHand())))
-                    allSexpistolsonebulletClient();
-              }
-               itemSendClient();
+                    if ((isHoldingGun(IPE.roundabout$getForRealMainHand()))) {
+                        allSexpistolsonebulletClient();
+                    }
+                    else
+                        itemSendClient();
+                }
             }
             case SKILL_1_CROUCH -> {
          //       itemKickClient();
@@ -82,7 +90,7 @@ public class PowersSexPistols extends NewDashPreset {
                 dash();
             }
             case SKILL_3_CROUCH -> {
-                projectileBlockingToggle();
+   //             projectileBlockingToggle();
             }
             case SKILL_4_NORMAL -> {
          //   feedSexPistolsClient();
@@ -96,9 +104,6 @@ public class PowersSexPistols extends NewDashPreset {
 
     private void targetSelect() {
 
-    }
-    private void projectileBlockingToggle(){
-        isProjectileBlockingActive = !isProjectileBlockingActive;
     }
 
     @Override
@@ -165,7 +170,7 @@ public class PowersSexPistols extends NewDashPreset {
             IPlayerEntity IPE = (IPlayerEntity) P;
       if ( (isHoldingGun(IPE.roundabout$getForRealMainHand())))
          setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_BULLET_RIDE, PowerIndex.SKILL_1);
-         if (isHoldingSneak())
+       else   if (isHoldingSneak())
             setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_KICK, PowerIndex.SKILL_1);
         else
             setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_SEND, PowerIndex.SKILL_1);

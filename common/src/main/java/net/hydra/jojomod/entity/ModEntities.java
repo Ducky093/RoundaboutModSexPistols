@@ -100,6 +100,7 @@ public class ModEntities {
     public static EntityType<DogMinion> DOG_MINION;
     public static EntityType<OcelotMinion> OCELOT_MINION;
     public static EntityType<ParrotMinion> PARROT_MINION;
+    public static EntityType<SexPistolsEntity> SEX_PISTOLS;
 
     public static EntityType<StarPlatinumBaseballEntity> STAR_PLATINUM_BASEBALL;
     public static EntityType<DiverDownEntity> DIVER_DOWN;

@@ -590,6 +590,12 @@ public class ForgeEntities {
                             clientTrackingRange(14).
                             build(new ResourceLocation(Roundabout.MOD_ID, "tusk_a1").toString())
             );
+    public static final RegistryObject<EntityType<SexPistolsEntity>> SEX_PISTOLS =
+            ENTITY_TYPES.register("sex_pistols", () ->
+                    EntityType.Builder.of(SexPistolsEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).
+                            clientTrackingRange(14).
+                            build(new ResourceLocation(Roundabout.MOD_ID, "sex_pistols").toString())
+            );
     public static final RegistryObject<EntityType<TuskEntity>> TUSK_A2 =
             ENTITY_TYPES.register("tusk_a2", () ->
                     EntityType.Builder.of(TuskEntity::new, MobCategory.MISC).sized(0.5F, 1.0F).

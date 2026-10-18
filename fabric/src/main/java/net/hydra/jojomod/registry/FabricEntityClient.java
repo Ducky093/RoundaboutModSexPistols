@@ -105,6 +105,7 @@ public class FabricEntityClient {
         EntityRendererRegistry.register(FabricEntities.TUSK_A2, TuskAct2Renderer::new);
         EntityRendererRegistry.register(FabricEntities.TUSK_A3, TuskAct3Renderer::new);
         EntityRendererRegistry.register(FabricEntities.TUSK_A4, TuskAct4Renderer::new);
+        EntityRendererRegistry.register(FabricEntities.SEX_PISTOLS, SexPistolsRenderer::new);
         EntityRendererRegistry.register(FabricEntities.ANUBIS, AnubisRenderer::new);
         EntityRendererRegistry.register(FabricEntities.DIVER_DOWN, DiverDownRenderer::new);
         EntityRendererRegistry.register(FabricEntities.DIVER_DOWN_BETA, DiverDownBetaRenderer::new);
