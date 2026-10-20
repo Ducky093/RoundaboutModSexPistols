@@ -308,7 +308,7 @@
     "whitesnake.memory.horse.HorseMemoryRavagerRidingMixin",
     "whitesnake.memory.horse.HorseMemorySaddledControlMixin",
     "whitesnake.memory.horse.LobotomizedHorseMovementMixin",
-    "sex_pistols.ProjectileBlockingDamageReduction"
+    "sex_pistols.ProjectileBlockingMixin"
   ],
   "client": [
     "HudRendering",

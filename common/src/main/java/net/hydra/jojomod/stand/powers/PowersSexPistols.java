@@ -2,28 +2,19 @@ package net.hydra.jojomod.stand.powers;
 
 import net.hydra.jojomod.Roundabout;
 import net.hydra.jojomod.access.IPlayerEntity;
-import net.hydra.jojomod.client.ClientUtil;
 import net.hydra.jojomod.client.StandIcons;
-import net.hydra.jojomod.entity.ModEntities;
-import net.hydra.jojomod.entity.stand.MagiciansRedEntity;
-import net.hydra.jojomod.entity.stand.StandEntity;
 import net.hydra.jojomod.event.index.PowerIndex;
 import net.hydra.jojomod.event.powers.StandPowers;
-import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.item.*;
-import net.hydra.jojomod.sound.ModSounds;
 import net.hydra.jojomod.stand.powers.elements.PowerContext;
 import net.hydra.jojomod.stand.powers.presets.NewDashPreset;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +49,7 @@ public class PowersSexPistols extends NewDashPreset {
             MANGA_SKIN[i] = new ResourceLocation(Roundabout.MOD_ID,location+(i+1)+ "/manga.png");
         }
     }
-    public static ResourceLocation getSkin(byte skin, int act) {
+    public static ResourceLocation getSkin(byte skin) {
         if (ANIME_SKIN[0] == null) {buildSkins();}
         ResourceLocation[] skins = switch (skin) {
             case ANIME -> ANIME_SKIN;
@@ -119,7 +110,7 @@ public class PowersSexPistols extends NewDashPreset {
                 dash();
             }
             case SKILL_3_CROUCH -> {
-   //             projectileBlockingToggle();
+                projectileBlockingToggle();
             }
             case SKILL_4_NORMAL -> {
          //   feedSexPistolsClient();
@@ -166,6 +157,15 @@ public class PowersSexPistols extends NewDashPreset {
     }
     public void allSexpistolsonebulletClient(){
 
+    }
+    public boolean projectileBlocking = false;
+    public void projectileBlockingToggle(){
+        if (!projectileBlocking) {
+            projectileBlocking = true;
+        }
+        else {
+            projectileBlocking = false;
+        }
     }
    /* public boolean recon() {
         public void toggleControlModeClient() {
