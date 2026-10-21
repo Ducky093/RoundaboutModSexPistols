@@ -68,6 +68,9 @@ public abstract class ConfigManager {
     public static Path getClientConfigPath() {
         return clientConfigPath;
     }
+    public static Path getAdvenceConfigPath() {
+        return advancedConfigPath;
+    }
 
     public static void loadBlacklists2()
     {
@@ -207,10 +210,10 @@ public abstract class ConfigManager {
             MainUtil.standBlockGrabBlacklist.clear();
             MainUtil.standBlockGrabBlacklist.addAll(getAdvancedConfig().standBlockGrabBlacklist);
         }
-        if (getAdvancedConfig().standDisassemblyBlacklist != null)
+        if (getAdvancedConfig().standDisassemblyBlacklistv1 != null)
         {
             MainUtil.standDisassemblyBlacklist.clear();
-            MainUtil.standDisassemblyBlacklist.addAll(getAdvancedConfig().standDisassemblyBlacklist);
+            MainUtil.standDisassemblyBlacklist.addAll(getAdvancedConfig().standDisassemblyBlacklistv1);
         }
         if (getAdvancedConfig().lootPoolForD4CChests != null)
         {
@@ -347,11 +350,11 @@ public abstract class ConfigManager {
 
     public static void loadStandArrowPool()
     {
-        if (getAdvancedConfig().standArrowPoolv6 != null)
+        if (getAdvancedConfig().standArrowPoolv8 != null)
         {
             ModItems.STAND_ARROW_POOL.clear();
 
-            for (String disc : getAdvancedConfig().standArrowPoolv6)
+            for (String disc : getAdvancedConfig().standArrowPoolv8)
             {
                 String[] split = disc.split(":");
 
@@ -372,11 +375,11 @@ public abstract class ConfigManager {
                 }
             }
         }
-        if (getAdvancedConfig().naturalStandUserMobPoolv9 != null)
+        if (getAdvancedConfig().naturalStandUserMobPoolv11 != null)
         {
             ModItems.STAND_ARROW_POOL_FOR_MOBS.clear();
 
-            for (String disc : getAdvancedConfig().naturalStandUserMobPoolv9)
+            for (String disc : getAdvancedConfig().naturalStandUserMobPoolv11)
             {
                 String[] split = disc.split(":");
 
@@ -555,6 +558,18 @@ public abstract class ConfigManager {
         AdvancedConfig.updateServer(config);
         saveAdvacedConfig();
         Roundabout.LOGGER.info("Loaded advanced config");
+    }
+    private static boolean advancedConfigDirty = false;
+
+    public static void markAdvancedConfigAsDirty(){
+        advancedConfigDirty = true;
+    }
+
+    public static void reloadAdvancedConfigCheck() {
+        if (advancedConfigDirty) {
+            loadAdvancedConfig();
+            advancedConfigDirty = false;
+        }
     }
 
     public static void validateFields(Object instance) {

@@ -9,6 +9,7 @@ import net.hydra.jojomod.block.ModBlocks;
 import net.hydra.jojomod.block.StreetSignBlock;
 import net.hydra.jojomod.block.handBlock.AbstractHandBlock;
 import net.hydra.jojomod.entity.*;
+import net.hydra.jojomod.entity.badCompanyTroops.*;
 import net.hydra.jojomod.entity.mobs.AnubisGuardian;
 import net.hydra.jojomod.entity.mobs.StrayCatEntity;
 import net.hydra.jojomod.entity.mobs.TerrierEntity;
@@ -100,6 +101,9 @@ public class ForgeEvents {
         event.put(ForgeEntities.BEACH_SABBATH.get(), BlackSabbathEntity.createStandAttributes().build());
         event.put(ForgeEntities.SANTA_SABBATH.get(), BlackSabbathEntity.createStandAttributes().build());
         event.put(ForgeEntities.COWBOY_SABBATH.get(), BlackSabbathEntity.createStandAttributes().build());
+        event.put(ForgeEntities.GRABBED_MOB_SOUL.get(), StandEntity.createStandAttributes().build());
+        event.put(ForgeEntities.GRABBED_PLAYER_SOUL.get(), StandEntity.createStandAttributes().build());
+        event.put(ForgeEntities.GRABBED_PLAYER_SOUL_SLIM.get(), StandEntity.createStandAttributes().build());
         event.put(ForgeEntities.WALKING_HEART.get(), StandEntity.createStandAttributes().build());
         event.put(ForgeEntities.CREAM.get(), StandEntity.createStandAttributes().build());
         event.put(ForgeEntities.MAGICIANS_RED.get(), StandEntity.createStandAttributes().build());
@@ -116,6 +120,7 @@ public class ForgeEvents {
         event.put(ForgeEntities.DIVER_DOWN_WORLD.get(), StandEntity.createStandAttributes().build());
         event.put(ForgeEntities.DIVER_DROWNED.get(), StandEntity.createStandAttributes().build());
         event.put(ForgeEntities.SILVER_CHARIOT.get(), StandEntity.createStandAttributes().build());
+        event.put(ForgeEntities.SILVER_CHARIOT_PHARAOH.get(), StandEntity.createStandAttributes().build());
         event.put(ForgeEntities.OVA_ENYA.get(), OVAEnyaNPC.createAttributes().build());
         event.put(ForgeEntities.ENYA.get(), OVAEnyaNPC.createAttributes().build());
         event.put(ForgeEntities.JOTARO.get(), JotaroNPC.createAttributes().build());
@@ -169,6 +174,7 @@ public class ForgeEvents {
         event.put(ForgeEntities.MOLD_SPORE.get(), MoldSporesEntity.createStandAttributes().build());
         event.put(ForgeEntities.PURPLE_SMOKE.get(), PurpleSmokeEntity.createStandAttributes().build());
         event.put(ForgeEntities.SHEER_HEART_ATTACK.get(), SheerHeartAttackEntity.createStandAttributes().build());
+        event.put(ForgeEntities.BAD_COMPANY_SOLDIER.get(), BCSoldier.createStandAttributes().build());
     }
 
     @SubscribeEvent
@@ -388,6 +394,10 @@ public class ForgeEvents {
         ((MaxStandDiscItem)ForgeItems.MAX_STAND_DISC_THE_WORLD.get()).baseDisc = ((StandDiscItem)ForgeItems.STAND_DISC_THE_WORLD.get());
         ModItems.MAX_STAND_DISC_THE_WORLD = ForgeItems.MAX_STAND_DISC_THE_WORLD.get();
 
+        ModItems.STAND_DISC_BAD_COMPANY = ForgeItems.STAND_DISC_BAD_COMPANY.get();
+        ((MaxStandDiscItem)ForgeItems.MAX_STAND_DISC_BAD_COMPANY.get()).baseDisc = ((StandDiscItem)ForgeItems.STAND_DISC_BAD_COMPANY.get());
+        ModItems.MAX_STAND_DISC_BAD_COMPANY = ForgeItems.MAX_STAND_DISC_BAD_COMPANY.get();
+
         ModItems.STAND_DISC_STAR_PLATINUM = ForgeItems.STAND_DISC_STAR_PLATINUM.get();
         ((MaxStandDiscItem)ForgeItems.MAX_STAND_DISC_STAR_PLATINUM.get()).baseDisc = ((StandDiscItem)ForgeItems.STAND_DISC_STAR_PLATINUM.get());
         ModItems.MAX_STAND_DISC_STAR_PLATINUM = ForgeItems.MAX_STAND_DISC_STAR_PLATINUM.get();
@@ -465,6 +475,7 @@ public class ForgeEvents {
         ModItems.STAND_DISC_HEY_YA = ForgeItems.STAND_DISC_HEY_YA.get();
         ModItems.STAND_DISC_MANDOM = ForgeItems.STAND_DISC_MANDOM.get();
         ModItems.STAND_DISC_CENTURY_BOY = ForgeItems.STAND_DISC_CENTURY_BOY.get();
+        ModItems.STAND_DISC_LYIN_EYES = ForgeItems.STAND_DISC_LYIN_EYES.get();
         ModItems.STAND_DISC_SURVIVOR = ForgeItems.STAND_DISC_SURVIVOR.get();
         ModItems.STAND_DISC_ACHTUNG = ForgeItems.STAND_DISC_ACHTUNG.get();
         ModItems.STAND_DISC_SEX_PISTOLS = ForgeItems.STAND_DISC_SEX_PISTOLS.get();
@@ -615,6 +626,7 @@ public class ForgeEvents {
         ModItems.ENYA_MASK = ForgeItems.ENYA_MASK.get();
         ModItems.DAIYA_MASK = ForgeItems.DAIYA_MASK.get();
         ModItems.DAIYA_2_MASK = ForgeItems.DAIYA_2_MASK.get();
+        ModItems.ANASUI_MASK = ForgeItems.ANASUI_MASK.get();
         ModItems.ENYA_OVA_MASK = ForgeItems.ENYA_OVA_MASK.get();
         ModItems.VALENTINE_MASK = ForgeItems.VALENTINE_MASK.get();
         ModItems.JOSUKE_PART_EIGHT_MASK = ForgeItems.JOSUKE_PART_EIGHT_MASK.get();
@@ -670,6 +682,7 @@ public class ForgeEvents {
         ModParticles.HIT_IMPACT = ForgeParticles.HIT_IMPACT.get();
         ModParticles.MELTING = ForgeParticles.MELTING.get();
         ModParticles.BLOOD = ForgeParticles.BLOOD.get();
+        ModParticles.SWEAT = ForgeParticles.SWEAT.get();
         ModParticles.BLUE_BLOOD = ForgeParticles.BLUE_BLOOD.get();
         ModParticles.SMALL_EXPLOSION = ForgeParticles.SMALL_EXPLOSION.get();
         ModParticles.ENDER_BLOOD = ForgeParticles.ENDER_BLOOD.get();
@@ -780,6 +793,7 @@ public class ForgeEvents {
         ModEffects.HEX = ForgeEffects.HEX.get();
         ModEffects.BANISH = ForgeEffects.BANISH.get();
         ModEffects.DOOMED = ForgeEffects.DOOMED.get();
+        ModEffects.DOOM_IMMUNITY = ForgeEffects.DOOM_IMMUNITY.get();
         ModEffects.STAND_VIRUS = ForgeEffects.STAND_VIRUS.get();
         ModEffects.CAPTURING_LOVE = ForgeEffects.CAPTURING_LOVE.get();
         ModEffects.FACELESS = ForgeEffects.FACELESS.get();
@@ -853,6 +867,9 @@ public class ForgeEvents {
         ModEntities.BEACH_SABBATH = ForgeEntities.BEACH_SABBATH.get();
         ModEntities.SANTA_SABBATH = ForgeEntities.SANTA_SABBATH.get();
         ModEntities.COWBOY_SABBATH = ForgeEntities.COWBOY_SABBATH.get();
+        ModEntities.GRABBED_MOB_SOUL = ForgeEntities.GRABBED_MOB_SOUL.get();
+        ModEntities.GRABBED_PLAYER_SOUL = ForgeEntities.GRABBED_PLAYER_SOUL.get();
+        ModEntities.GRABBED_PLAYER_SOUL_SLIM = ForgeEntities.GRABBED_PLAYER_SOUL_SLIM.get();
         ModEntities.WALKING_HEART = ForgeEntities.WALKING_HEART.get();
         ModEntities.JUSTICE_PIRATE = ForgeEntities.JUSTICE_PIRATE.get();
         ModEntities.DARK_MIRAGE = ForgeEntities.DARK_MIRAGE.get();
@@ -869,6 +886,7 @@ public class ForgeEvents {
         ModEntities.DIVER_KICK = ForgeEntities.DIVER_KICK.get();
         ModEntities.BONE_PROJECTILE = ForgeEntities.BONE_PROJECTILE.get();
         ModEntities.SILVER_CHARIOT = ForgeEntities.SILVER_CHARIOT.get();
+        ModEntities.SILVER_CHARIOT_PHARAOH = ForgeEntities.SILVER_CHARIOT_PHARAOH.get();
         ModEntities.SILVER_CHARIOT_RAPIER = ForgeEntities.SILVER_CHARIOT_RAPIER.get();
         ModEntities.SILVER_CHARIOT_RAPIER_PLATFORM = ForgeEntities.SILVER_CHARIOT_RAPIER_PLATFORM.get();
         ModEntities.THROWN_HARPOON = ForgeEntities.THROWN_HARPOON.get();
@@ -902,6 +920,7 @@ public class ForgeEvents {
         ModEntities.GASOLINE_SPLATTER = ForgeEntities.GASOLINE_SPLATTER.get();
         ModEntities.BLOOD_SPLATTER = ForgeEntities.BLOOD_SPLATTER.get();
         ModEntities.STAND_ARROW = ForgeEntities.STAND_ARROW.get();
+        ModEntities.TOTEM_OF_DOOM = ForgeEntities.TOTEM_OF_DOOM.get();
         ModEntities.BOMB_PLANTED_ARROW = ForgeEntities.BOMB_PLANTED_ARROW.get();
         ModEntities.BOMB_PLANTED_SPECTRAL_ARROW = ForgeEntities.BOMB_PLANTED_SPECTRAL_ARROW.get();
         ModEntities.BOMB_PLANTED_ENDERPEARL = ForgeEntities.BOMB_PLANTED_ENDERPEARL.get();
@@ -933,6 +952,8 @@ public class ForgeEvents {
         ModEntities.TUSK_NAIL = ForgeEntities.TUSK_NAIL.get();
         ModEntities.TUSK_HOLE = ForgeEntities.TUSK_HOLE.get();
         ModEntities.PH_CAPSULE = ForgeEntities.PH_CAPSULE.get();
+
+        ModEntities.BAD_COMPANY_SOLDIER = ForgeEntities.BAD_COMPANY_SOLDIER.get();
 
         ModEntities.FALLEN_ZOMBIE = ForgeEntities.FALLEN_ZOMBIE.get();
         ModEntities.FALLEN_SKELETON = ForgeEntities.FALLEN_SKELETON.get();

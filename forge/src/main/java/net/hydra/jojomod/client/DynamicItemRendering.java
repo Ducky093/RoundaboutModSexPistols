@@ -1,7 +1,8 @@
 package net.hydra.jojomod.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.hydra.jojomod.Roundabout;
+import net.hydra.jojomod.block.CoffinBlock;
+import net.hydra.jojomod.block.CoffinBlockEntity;
 import net.hydra.jojomod.block.handBlock.HandBlock;
 import net.hydra.jojomod.block.handBlock.HandBlockEntity;
 import net.hydra.jojomod.registry.ForgeBlocks;
@@ -36,8 +37,12 @@ public class DynamicItemRendering extends BlockEntityWithoutLevelRenderer {
     private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
     private final EntityModelSet entityModelSet;
 
+
     private final HandBlockEntity HAND_BLOCK_ENTITY =
             new HandBlockEntity(BlockPos.ZERO, ForgeBlocks.HAND_BLOCK.get().defaultBlockState());
+    private final CoffinBlockEntity COFFIN_BLOCK_ENTITY =
+            new CoffinBlockEntity(BlockPos.ZERO, ForgeBlocks.COFFIN_BLOCK.get().defaultBlockState());
+
 
     public DynamicItemRendering(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
         super(p_172550_, p_172551_);
@@ -57,11 +62,11 @@ public class DynamicItemRendering extends BlockEntityWithoutLevelRenderer {
             if (block instanceof HandBlock) {
                 blockEntity = HAND_BLOCK_ENTITY;
                 ((HandBlockEntity)blockEntity).setStoredStack(itemStack);
+            } else if (block instanceof CoffinBlock) {
+                blockEntity = COFFIN_BLOCK_ENTITY;
             }else {
                 return;
             }
-
-
 
             blockEntityRenderDispatcher.renderItem(blockEntity, poseStack, bufferSource, combinedLight, combinedOverlay);
         }

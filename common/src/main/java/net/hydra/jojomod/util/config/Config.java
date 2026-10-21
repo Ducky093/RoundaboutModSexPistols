@@ -208,6 +208,12 @@ public class Config implements Cloneable {
         public Integer matchDamage;
         @BooleanOption(group = "inherit", value = true)
         public Boolean noGlaiveDuringPunchRecharge;
+        @IntOption(group = "inherit", value = 40, min = 0, max = 72000)
+        public Integer totemRange;
+        @IntOption(group = "inherit", value = 300, min = 0, max = 72000)
+        public Integer totemDuration;
+        @IntOption(group = "inherit", value = 30, min = 0, max = 72000)
+        public Integer doomImmunityDuration;
     }
     public static class WorldGenSettings {
         @IntOption(group = "inherit", value = 55, min = 0, max = 4096)
@@ -468,6 +474,10 @@ public class Config implements Cloneable {
         public Boolean enableKillerQueen;
         @BooleanOption(group = "inherit", value = true)
         public Boolean sneakyKilling;
+        @IntOption(group = "inherit", value = 100, min = 0, max = 72000)
+        public Integer miningSpeedMultiplierKq;
+        @IntOption(group = "inherit", value = 0, min = 0, max = 4)
+        public Integer getMiningTierKq;
         @IntOption(group = "inherit", value = 100, min = 0, max = 72000)
         public Integer killerQueenAttackMultOnPlayers;
         @IntOption(group = "inherit", value = 100, min = 0, max = 72000)
@@ -1184,6 +1194,10 @@ public class Config implements Cloneable {
         public Boolean enableD4c;
         @IntOption(group = "inherit", value = 1, min = 0, max = 3)
         public Integer dropMode;
+        @IntOption(group = "inherit", value = 10, min = 0, max = 72000)
+        public Integer cloneLimit;
+        @FloatOption(group = "inherit", value = 0.05F, min = 0.0F, max = 1.0F)
+        public Float chanceForFatClone;
         @BooleanOption(group = "inherit", value = false)
         public Boolean whiteListModdedMobs;
         @BooleanOption(group = "inherit", value = true)
@@ -1340,6 +1354,8 @@ public class Config implements Cloneable {
         public Boolean advancedClearEffect;
         @IntOption(group = "inherit", value = 0, min = 0, max = 5)
         public Integer potionStrengthBoost;
+        @BooleanOption(group = "inherit", value = false)
+        public Boolean disableBlockDisassembly;
     }
     public static class WhitesnakeSettings {
         @BooleanOption(group = "inherit", value = true)
@@ -1350,6 +1366,8 @@ public class Config implements Cloneable {
         public Integer whitesnakeAttackMultOnMobs;
         @IntOption(group = "inherit", value = 15, min = 0, max = 72000)
         public Integer whitesnakeGuardPoints;
+        @BooleanOption(group = "inherit", value = false)
+        public Boolean whitesnakeNameChangingText;
         @BooleanOption(group = "inherit", value = false)
         public Boolean discStealDealsDamage;
         @IntOption(group = "inherit", value = 600, min = 0, max = 72000)

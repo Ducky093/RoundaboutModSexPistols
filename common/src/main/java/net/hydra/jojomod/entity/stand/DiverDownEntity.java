@@ -47,11 +47,12 @@ public class DiverDownEntity extends FollowingStandEntity {
             SPINE_ART = 17,
             WORLD_DIVER = 18,
             DIVER_DROWNED = 19,
-            SECCO = 20;
+            SECCO = 20,
+            VAN_HALEN = 21,
+            SCUBA_DIVER = 22;
 
     public final AnimationState hideFists = new AnimationState();
     public final AnimationState mobDive = new AnimationState();
-    public final AnimationState mobDiveWindup = new AnimationState();
     public final AnimationState energyStorage = new AnimationState();
     public final AnimationState energyStorageWindup = new AnimationState();
     public final AnimationState phasePunchWindup = new AnimationState();

@@ -487,6 +487,17 @@ public class StandIcons {
     public static final ResourceLocation BITES_THE_DUST_TARGET = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/killer_queen/bites_the_dust_target.png");
 
+    public static final ResourceLocation BAD_COMPANY_TROOP_DROP = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/bad_company/troop_summon.png");
+    public static final ResourceLocation BAD_COMPANY_TROOP_RECALL = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/bad_company/troop_recall.png");
+    public static final ResourceLocation BAD_COMPANY_PILOT_MODE = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/bad_company/pilot_mode.png");
+    public static final ResourceLocation BAD_COMPANY_PILOT_MODE_EXIT = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/bad_company/pilot_mode_exit.png");
+    public static final ResourceLocation BAD_COMPANY_TACTICAL_OPTIONS = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/bad_company/tactical_options.png");
+
     public static final ResourceLocation PLANET_WAVES_METEOR_SHOWER = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/planet_waves/meteor_shower.png");
     public static final ResourceLocation PLANET_WAVES_BIG_METEOR = new ResourceLocation(Roundabout.MOD_ID,
@@ -563,6 +574,8 @@ public class StandIcons {
             "textures/gui/icons/king_crimson/epitaph.png");
     public static final ResourceLocation KING_CRIMSON_LEDGE_GRAB = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/king_crimson/stand_ledge_grab.png");
+    public static final ResourceLocation KING_CRIMSON_LEDGE_GRAB_2 = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/king_crimson/vault_2.png");
     public static final ResourceLocation KING_CRIMSON_HANDS_ACTIVE = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/king_crimson/hands_active.png");
     public static final ResourceLocation STAR_PLATINUM_HANDS_ACTIVE = new ResourceLocation(Roundabout.MOD_ID,
@@ -1095,6 +1108,23 @@ public class StandIcons {
     public static final ResourceLocation DIVER_DOWN_MINING = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/diver_down/mining.png");
         //Diver Down icons end
+
+    // lyin eyes icons start
+
+    public static final ResourceLocation LYIN_EYES_INVENTORY = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/lyin_eyes/inventory_reading.png");
+    public static final ResourceLocation LYIN_EYES_TENSION_SENSOR = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/lyin_eyes/tension_sensor.png");
+    public static final ResourceLocation LYIN_EYES_TENSION_SENSOR_ON = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/lyin_eyes/tension_sensor_on.png");
+    public static final ResourceLocation LYIN_EYES_PASSIVE = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/lyin_eyes/callout_passive.png");
+    public static final ResourceLocation LYIN_EYES_MAP_ON = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/lyin_eyes/nematode_map_on.png");
+    public static final ResourceLocation LYIN_EYES_MAP_OFF = new ResourceLocation(Roundabout.MOD_ID,
+            "textures/gui/icons/lyin_eyes/nematode_map_off.png");
+
+    // lyin eyes icons end
 
     public static final ResourceLocation EMPEROR_SPEED_UP = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/emperor/emperor_speed_up.png");
