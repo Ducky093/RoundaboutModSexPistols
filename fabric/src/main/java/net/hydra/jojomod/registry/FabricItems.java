@@ -169,8 +169,10 @@ public class FabricItems {
 
     public static Item STAND_DISC_PEARL_JAM = registerItem("pearl_jam_disc",
             new StandDiscItem(new Item.Properties().stacksTo(1), new PowersPearlJam(null)));
+    public static Item STAND_DISC_BAD_COMPANY = registerItem("bad_company_disc",
+            new StandDiscItem(new Item.Properties().stacksTo(1), new PowersBadCompany(null)));
     public static Item STAND_DISC_SEX_PISTOLS = registerItem("sex_pistols_disc",
-            new StandDiscItem(new Item.Properties().stacksTo(1), new PowersPearlJam(null)));
+            new StandDiscItem(new Item.Properties().stacksTo(1), new PowersSexPistols(null)));
 
     public static Item STAND_DISC_CINDERELLA = registerItem("cinderella_disc",
             new StandDiscItem(new Item.Properties().stacksTo(1), new PowersCinderella(null)));
