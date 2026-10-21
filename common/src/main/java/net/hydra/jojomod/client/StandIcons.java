@@ -968,6 +968,8 @@ public class StandIcons {
     public static final ResourceLocation SEX_PISTOLS_ITEM_KICK = Roundabout.location("textures/gui/icons/sex_pistols/sex_pistols_item_kick.png");
     public static final ResourceLocation SEX_PISTOLS_TARGET = Roundabout.location("textures/gui/icons/sex_pistols/sex_pistols_target.png");
     public static final ResourceLocation SEX_PISTOLS_BULLET_RIDE = Roundabout.location("textures/gui/icons/sex_pistols/sex_pistols_bullet_ride.png");
+    public static final ResourceLocation PLACEHOLDER = Roundabout.location("textures/gui/icons/sex_pistols/placeholder.png");
+    public static final ResourceLocation PLACEHOLDER2 = Roundabout.location("textures/gui/icons/sex_pistols/placeholder2.png");
 
     public static final ResourceLocation SOFT_AND_WET_BARRAGE = new ResourceLocation(Roundabout.MOD_ID,
             "textures/gui/icons/soft_and_wet/barrage.png");

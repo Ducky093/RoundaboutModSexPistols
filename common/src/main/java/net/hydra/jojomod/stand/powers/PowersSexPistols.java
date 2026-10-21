@@ -40,12 +40,13 @@ public class PowersSexPistols extends NewDashPreset {
                 ANIME
         );
     }
+
     private static ResourceLocation[] ANIME_SKIN = new ResourceLocation[4];
     private static ResourceLocation[] MANGA_SKIN = new ResourceLocation[4];
-    private static final String location = "textures/stand/tusk/act_";
+    private static final String location = "textures/stand/sex_pistols";
     public static void buildSkins() {
         for(int i=0;i<4;i++) {
-            ANIME_SKIN[i] = new ResourceLocation(Roundabout.MOD_ID,location+(i+1)+ "/manga.png");
+            ANIME_SKIN[i] = new ResourceLocation(Roundabout.MOD_ID,location+(i+1)+ "/anime.png");
             MANGA_SKIN[i] = new ResourceLocation(Roundabout.MOD_ID,location+(i+1)+ "/manga.png");
         }
     }
@@ -205,10 +206,14 @@ public class PowersSexPistols extends NewDashPreset {
             setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_SEND, PowerIndex.SKILL_1);
             setSkillIcon(context, x, y, 2, StandIcons.SEX_PISTOLS_TARGET, PowerIndex.SKILL_2);
             setSkillIcon(context, x, y, 3, StandIcons.DODGE, PowerIndex.GLOBAL_DASH);
-       /* if (isHoldingSneak())
-            setSkillIcon(context, x, y, 4, StandIcons.RECON, PowerIndex.SKILL_4);
+            if (projectileBlocking)
+                setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER2, PowerIndex.SKILL_4);
+            else setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER, PowerIndex.SKILL_4);
+
+            if (isHoldingSneak())
+            setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER, PowerIndex.SKILL_4);
         else
-            setSkillIcon(context, x, y, 4, StandIcons.FEED_SEX_PISTOLS, PowerIndex.SKILL_4); */
+            setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER2, PowerIndex.SKILL_4);
         super.renderIcons(context, x, y);
     }
 }
