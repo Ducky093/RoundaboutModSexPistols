@@ -206,10 +206,11 @@ public class PowersSexPistols extends NewDashPreset {
             setSkillIcon(context, x, y, 1, StandIcons.SEX_PISTOLS_ITEM_SEND, PowerIndex.SKILL_1);
             setSkillIcon(context, x, y, 2, StandIcons.SEX_PISTOLS_TARGET, PowerIndex.SKILL_2);
             setSkillIcon(context, x, y, 3, StandIcons.DODGE, PowerIndex.GLOBAL_DASH);
-            if (projectileBlocking)
-                setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER2, PowerIndex.SKILL_4);
-            else setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER, PowerIndex.SKILL_4);
-
+            if (isHoldingSneak()) {
+                if (projectileBlocking)
+                    setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER2, PowerIndex.SKILL_3);
+                else setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER, PowerIndex.SKILL_3);
+            }
             if (isHoldingSneak())
             setSkillIcon(context, x, y, 4, StandIcons.PLACEHOLDER, PowerIndex.SKILL_4);
         else
