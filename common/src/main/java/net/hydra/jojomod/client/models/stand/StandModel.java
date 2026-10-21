@@ -29,9 +29,6 @@ public class StandModel<T extends StandEntity> extends HierarchicalModel<T> {
     public ModelPart leftHand;
     public ModelPart rightHand;
 
-    public StandModel(ModelPart modelPart) {
-    }
-
     public ModelPart getHead(){
         return this.head;
     }
