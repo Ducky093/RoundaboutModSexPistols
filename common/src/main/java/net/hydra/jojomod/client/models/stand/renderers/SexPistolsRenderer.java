@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class SexPistolsRenderer extends StandRenderer<SexPistolsEntity> {
     public SexPistolsRenderer(EntityRendererProvider.Context context) {
-        super(context, new net.hydra.jojomod.client.models.stand.StandModel<>(context.bakeLayer(ModEntityRendererClient.SEX_PISTOLS_LAYER)), 0f);
+        super(context, new net.hydra.jojomod.client.models.stand.StandModel<>(), 0f);
     }
     @Override
     public ResourceLocation getTextureLocation(SexPistolsEntity entity) {return PowersSexPistols.getSkin(entity.getSkin());}
